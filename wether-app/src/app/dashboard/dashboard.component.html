@@ -4,10 +4,10 @@
         <div class=" header_inner left">
             <i *ngIf="!sidebarToggle" (click)="sidebarToogle()" class="fas fa-bars"></i>
             <i *ngIf="sidebarToggle" (click)="sidebarToogle()" class="fas fa-ellipsis-v"></i>
-            <p>WEATHER-APP</p>
+            <p>City: {{currentCityName}}</p>
         </div>
         <div class="header_inner right">
-            <i class="fas fa-search"></i>
+            <p>WEATHER-APP</p>
         </div>
     </header>
     <!-- end of the header -->

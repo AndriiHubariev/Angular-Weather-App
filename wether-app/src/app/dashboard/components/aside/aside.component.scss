@@ -17,6 +17,7 @@
         transition: all .2s linear;
         width: 200px;
         text-align: center;
+        position: relative;
         input {
             margin: 0 5px;
             border: none;
@@ -26,11 +27,11 @@
         input::placeholder {
             color: white;
         }
-    }
-    .sidebar_search_hide {
-        display: none;
-        height: 100px;
-
+        small {
+            position: absolute;
+            color: red;
+            bottom: 0;
+        }
     }
     // ----- end of search ----- //
     // ----- picture ----- //
@@ -41,6 +42,11 @@
         font-size: 150px;
         i {
             padding: 0;
+            
+        }
+        i:hover {
+            transform: scale(1.0);
+            cursor: default;
         }
     }
     // ----- end of the picture ----- //
@@ -70,6 +76,7 @@
             }
         }
         .date {
+            white-space: nowrap;
             transition: all .2s linear;
         }
     }
@@ -84,7 +91,7 @@
         .addition {
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
+            margin: 20px 0 0px;
             justify-content: space-between;
             i {
                 font-size: 1.5rem;
@@ -92,6 +99,7 @@
         }
         small {
             white-space: nowrap;
+            margin-top: 20px;
         }
     }
     // ----- end of the addition content ----- //
@@ -103,6 +111,9 @@
 }
 .minDate {
     font-size: .8rem;
+}
+.minSearch {
+    display: none;
 }
 .minIco {
     i {

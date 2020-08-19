@@ -9,7 +9,7 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
   styleUrls: ['./uvi-chart.component.scss']
 })
 export class UviChartComponent implements OnInit {
-  public uvi_chart: Chart = [];
+  public uviChart: Chart = [];
   private weatherData;
   private dates = [];
   private uvi = [];
@@ -24,7 +24,7 @@ export class UviChartComponent implements OnInit {
         this.weatherData.forEach(e => {
            this.uvi.push(e.uvi);
         });
-        this.uvi_chart = new Chart('uvi_chart', {
+        this.uviChart = new Chart('uviChart', {
           type: 'bar',
           data: {
             labels: this.dates,
@@ -51,6 +51,11 @@ export class UviChartComponent implements OnInit {
             scales: {
               yAxes: [
                 {
+                  ticks: {
+                    min: 0,
+                    max: 11,
+                    stepSize: 1,
+                  },
                   drawborder: false,
                 },
               ],

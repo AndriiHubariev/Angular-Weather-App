@@ -22,15 +22,12 @@ export class DashboardComponent
   implements OnInit {
   public sidebarToggle;
   public dateReceived: boolean;
+  public currentCityName: string;
 
   constructor(
     private dataRepository: DataRepositoryService,
     private service: DashboardService
-  ) {
-    this.dataRepository.currentOneDayWr.subscribe(res => {
-     res.length > 0 ? this.dateReceived = true : this.dateReceived = false;
-  });
-}
+  ) {}
 
   sidebarToogle() {
     this.sidebarToggle
@@ -39,5 +36,13 @@ export class DashboardComponent
   }
   ngOnInit(): void {
     this.service.sidebarToggle.subscribe((res) => (this.sidebarToggle = res));
+    this.dataRepository.currentOneDayWr.subscribe(res => {
+     if (res.length > 0) {
+       this.dateReceived = true;
+       this.currentCityName = res[0].name;
+     } else{
+       this.dateReceived = false;
+     }
+   });
   }
 }

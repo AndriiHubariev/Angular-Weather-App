@@ -65,7 +65,7 @@ export class MainChartComponent implements OnInit {
                   drawborder: false,
                   ticks: {
                     min: 0,
-                    max: 40,
+                    max: 60,
                     stepSize: 5,
                   },
                 },

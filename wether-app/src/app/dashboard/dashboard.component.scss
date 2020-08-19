@@ -23,13 +23,17 @@ header {
         display: flex;
         align-items: center;
         p {
-            margin-left: 20px;
+            margin: 0;
         }
         i {
+            min-width: 20px;
             margin-right: 20px;
         }
         i:active {
             color: rgb(32, 22, 22);
+        }
+        h2 {
+            margin: 0;
         }
     }
 }

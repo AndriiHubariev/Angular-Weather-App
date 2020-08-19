@@ -11,22 +11,20 @@ import { mergeMap } from 'rxjs/operators';
 export class DataRepositoryService {
   public currentOneDayWr = new BehaviorSubject([]);
   public currentMultyWeather = new BehaviorSubject([]);
+
+  getCurrentOneDayWr(lat, lon) {
+    return this.dataSource.getCurrentOneDayWr(lat, lon).subscribe(res => this.currentOneDayWr.next([res]));
+  }
+  getMultipleWrByCr(lat, lon) {
+    return this.dataSource.getMultipleWrByCr(lat, lon).subscribe(res => this.currentMultyWeather.next([res]));
+  }
+  getWeatherData(lat, lon) {
+    this.getCurrentOneDayWr(lat, lon);
+    this.getMultipleWrByCr(lat, lon);
+  }
   constructor(private dataSource: DataSourceService, private geo: LocationService) {
-    this.geo.getLocation().pipe(
-      mergeMap((loc: {latitude, longitude} ) => {
-        const oneDaye = this.dataSource.getCurrentOneDayWr(loc.latitude, loc.longitude);
-        const multiple = this.dataSource.getMultipleWrByCr(loc.latitude, loc.longitude);
-        return forkJoin([oneDaye, multiple]);
-      })
-      ).subscribe(res => {
-        this.currentOneDayWr.next([res[0]]);
-        this.currentMultyWeather.next([res[1]]);
-      });
-  }
-  getCurrentWrByCityName(city: string) {
-    return this.dataSource.getCurrentWrByCityName(city);
-  }
-  getWrForFiveDaysByName(city: string) {
-    return this.dataSource.getWrForFiveDaysByName(city);
+    this.geo.getLocation().subscribe(loc => {
+      this.getWeatherData(loc.latitude, loc.longitude);
+    });
   }
 }

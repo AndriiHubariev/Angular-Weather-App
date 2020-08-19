@@ -1,7 +1,7 @@
-import { Component, OnInit, AfterContentChecked, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { DashboardService } from '../../dashboard.service';
 import { searchAnim } from 'src/app/app-animations';
-import { Subscription } from 'rxjs';
+import { Subscription, fromEvent, BehaviorSubject } from 'rxjs';
 import { DataRepositoryService } from 'src/app/model/data-repository.service';
 
 
@@ -11,7 +11,10 @@ import { DataRepositoryService } from 'src/app/model/data-repository.service';
   styleUrls: ['./aside.component.scss'],
   animations: [searchAnim]
 })
-export class AsideComponent implements OnInit, OnDestroy {
+export class AsideComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild('countryInput') country;
+  public errMessage = '';
+  public allCitiesList = require('../../../../assets/city.list.json');
   public sidebarToggle = false;
   public dataWeather = [];
   public mainWeatherCond = 'Sunny';
@@ -25,6 +28,18 @@ export class AsideComponent implements OnInit, OnDestroy {
 
   constructor(private service: DashboardService, private dataRepository: DataRepositoryService) { }
 
+  ngAfterViewInit(): void {
+    fromEvent(this.country.nativeElement, 'change').subscribe((e: {target}) => {
+     const country = this.allCitiesList.find(c => c.name.toLowerCase() === e.target.value.toLowerCase());
+     if (country) {
+      this.dataRepository.getWeatherData(country.coord.lat, country.coord.lon);
+      this.errMessage = '';
+     } else {
+        this.errMessage = 'incorrect city name';
+     }
+    });
+  }
+
   ngOnInit(): void {
    this.service.sidebarToggle.subscribe((res: boolean) => (this.sidebarToggle = res));
    this.dataSubs$ = this.dataRepository.currentOneDayWr.subscribe((res: [{main, weather, sys, wind, data}]) => {
@@ -32,6 +47,7 @@ export class AsideComponent implements OnInit, OnDestroy {
       if (this.dataWeather.length > 0) {
          this.getDataForHTML(this.dataWeather);
       }
+      console.log(this.dataWeather)
    });
   }
 

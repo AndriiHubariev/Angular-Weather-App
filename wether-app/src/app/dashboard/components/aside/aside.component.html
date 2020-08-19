@@ -1,9 +1,13 @@
 <div [class.minSidebar]="sidebarToggle" class="sidebar">
     <div   class="sidebar_full">
-        <div [@searchAnim] *ngIf="!sidebarToggle"  class="sidebar_search">
+        <div [@searchAnim] [class.minSearch]="sidebarToggle"  class="sidebar_search">
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search for a city">
+            <input list="list" #countryInput type="text" placeholder="Search for a city">
+            <!-- <datalist id="list">
+                <option *ngFor="let c of filteredCities" value="{{c.name}}">
+            </datalist> -->
             <i class="fas fa-map-pin"></i>
+            <small *ngIf="errMessage">{{errMessage}}</small>
         </div>
         <div [class.minIco]="sidebarToggle" class="sidebar_icons_wrapper" [ngSwitch]="mainWeatherCond">
             <i *ngSwitchCase="'Sunny'"  class="ico far fa-sun"></i>
