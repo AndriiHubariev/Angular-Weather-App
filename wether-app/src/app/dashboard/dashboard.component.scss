@@ -1,0 +1,58 @@
+@import '../variables.scss';
+.main_container {
+    position: relative;
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    border-top: 2px solid $main-border-color;
+    background: $main-background-color;
+    padding: 90px 20px 0 20px;
+}
+// ------ header start ------ //
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    padding: 0 40px;
+    .header_inner {
+        display: flex;
+        align-items: center;
+        p {
+            margin-left: 20px;
+        }
+        i {
+            margin-right: 20px;
+        }
+        i:active {
+            color: rgb(32, 22, 22);
+        }
+    }
+}
+// ------ end of the header ------ //
+
+// ------ aside start ------ //
+aside {
+    position: relative;
+    height: 100vh;
+    width: 250px;
+    margin-right: 30px;
+    transition: .3s linear;
+}
+.minAside {
+    width: 100px;
+}
+// ------ end of aside ------ //
+
+// ------ main start ------ //
+main {
+    transition: .3s linear;
+    position: relative;
+    flex: 1;
+    padding-bottom: 20px;
+}
+// ------ end of main ------ //

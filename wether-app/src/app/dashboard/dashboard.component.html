@@ -1,0 +1,17 @@
+<div class="main_container">
+    <!-- header start -->
+    <header>
+        <div class=" header_inner left">
+            <i *ngIf="!sidebarToggle" (click)="sidebarToogle()" class="fas fa-bars"></i>
+            <i *ngIf="sidebarToggle" (click)="sidebarToogle()" class="fas fa-ellipsis-v"></i>
+            <p>WEATHER-APP</p>
+        </div>
+        <div class="header_inner right">
+            <i class="fas fa-search"></i>
+        </div>
+    </header>
+    <!-- end of the header -->
+    <mat-spinner *ngIf="!dateReceived" ></mat-spinner>
+      <aside *ngIf="dateReceived" [@sidebarAnim] [class.minAside]="sidebarToggle"><app-aside></app-aside></aside>
+      <main *ngIf="dateReceived"><app-main></app-main></main>  
+</div>

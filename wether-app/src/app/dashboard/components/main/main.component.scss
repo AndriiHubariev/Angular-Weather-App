@@ -1,0 +1,38 @@
+@import '../../../variables.scss';
+.charts_wrapper {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 300px 150px 1fr;
+    grid-template-areas: 
+    'main-chart main-chart  uvi'
+    'days days days'
+    'pressure humidity wind';
+    grid-gap: 20px;
+
+    .chart {
+        border-radius: 8px;
+        background-color: $content-background-color;
+        box-shadow: 0 0 3px 0px rgb(14, 13, 13);
+    }
+
+    .main_chart {
+        position: relative;
+        grid-area: main-chart;
+    }
+    .uvi {
+        grid-area: uvi;
+    }
+    .days {
+        grid-area: days;
+    }
+    .pressure {
+        grid-area: pressure;
+    }
+    .humidity {
+        grid-area: humidity;
+    }
+    .wind {
+        grid-area: wind;
+    }
+}

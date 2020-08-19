@@ -1,0 +1,37 @@
+<div [class.minSidebar]="sidebarToggle" class="sidebar">
+    <div   class="sidebar_full">
+        <div [@searchAnim] *ngIf="!sidebarToggle"  class="sidebar_search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for a city">
+            <i class="fas fa-map-pin"></i>
+        </div>
+        <div [class.minIco]="sidebarToggle" class="sidebar_icons_wrapper" [ngSwitch]="mainWeatherCond">
+            <i *ngSwitchCase="'Sunny'"  class="ico far fa-sun"></i>
+            <i *ngSwitchCase="'Clear'"  class="ico far fa-sun"></i>
+            <i *ngSwitchCase="'Clouds'" class="ico fas fa-cloud"></i>
+            <i *ngSwitchCase="'Rain'" class="ico fas fa-cloud-showers-heavy"></i>
+        </div>
+        <div class="sidebar_temp_date">
+          <div [class.minTemp]="sidebarToggle" class="temp">{{currentTemp}} 
+              <span>C</span> 
+              <small>{{weatherDescription}}</small>
+         </div>
+          <div [class.minDate]="sidebarToggle" class="date">{{currentDate |date: 'E HH:mm a'}}</div>
+        </div>
+        <div  class="addition_content">
+            <div [class.minAddition]="sidebarToggle" class="addition wind">
+                 <i class="fas fa-wind"></i> 
+                <span>{{windSpeed}} m/s</span> 
+            </div>
+            <small>Sunrise & Sunset</small>
+            <div [class.minAddition]="sidebarToggle" class="addition sunrise">
+                <i class="fas fa-arrow-circle-up"></i>
+                <span>{{sunriseTime |date: 'hh:mm a'}}</span>
+            </div>
+            <div [class.minAddition]="sidebarToggle" class="addition sunset">
+                <i class="fas fa-arrow-circle-down"></i>
+                <span>{{sunsetTime |date: 'hh:mm a'}}</span>
+            </div>
+        </div>
+    </div>
+</div>

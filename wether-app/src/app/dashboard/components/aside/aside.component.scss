@@ -1,0 +1,123 @@
+@import '../../../variables.scss';
+.sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 630px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgb(37, 37, 37);
+    background: $aside-background-color;
+    padding: 20px;
+    transition: .3s linear;
+    overflow: hidden;
+    // ----- search start ----- //
+    .sidebar_search {
+        transition: all .2s linear;
+        width: 200px;
+        text-align: center;
+        input {
+            margin: 0 5px;
+            border: none;
+            background: transparent;
+            color: white;
+        }
+        input::placeholder {
+            color: white;
+        }
+    }
+    .sidebar_search_hide {
+        display: none;
+        height: 100px;
+
+    }
+    // ----- end of search ----- //
+    // ----- picture ----- //
+    .sidebar_icons_wrapper{
+        height: 150px;
+        margin: 40px 0 40px;
+        text-align: center;
+        font-size: 150px;
+        i {
+            padding: 0;
+        }
+    }
+    // ----- end of the picture ----- //
+    // ----- temp and date ----- //
+    .sidebar_temp_date {
+        border-bottom: 1px solid rgb(255, 255, 255,.4);
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        .temp {
+            font-size: 4rem;
+            position: relative;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span {
+                position: absolute;
+                top: 0;
+                left: 35%;
+                font-size: .9rem;
+            }
+            small {
+                font-size: .7rem;
+                margin-left: 30px;
+            }
+        }
+        .date {
+            transition: all .2s linear;
+        }
+    }
+    // ----- end of temp and date ----- //
+    // ----- addition content ----- //
+    .addition_content {
+        font-size: .8rem;
+        margin-top: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        .addition {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            justify-content: space-between;
+            i {
+                font-size: 1.5rem;
+            }
+        }
+        small {
+            white-space: nowrap;
+        }
+    }
+    // ----- end of the addition content ----- //
+}
+.minSidebar {
+    width: 100px;
+    text-align: center;
+    overflow: visible;
+}
+.minDate {
+    font-size: .8rem;
+}
+.minIco {
+    i {
+        font-size: 80px;
+    }
+}
+.minTemp {
+
+    small {
+        display: none;
+    }
+    span {
+        right: -40%;
+    }
+}
+.minAddition {
+    flex-direction: column;
+}
