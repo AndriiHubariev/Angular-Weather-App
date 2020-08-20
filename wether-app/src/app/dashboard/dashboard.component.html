@@ -5,6 +5,7 @@
             <i *ngIf="!sidebarToggle" (click)="sidebarToogle()" class="fas fa-bars"></i>
             <i *ngIf="sidebarToggle" (click)="sidebarToogle()" class="fas fa-ellipsis-v"></i>
             <p>City: {{currentCityName}}</p>
+            <small>{{wrongCityErr}}</small>
         </div>
         <div class="header_inner right">
             <p>WEATHER-APP</p>

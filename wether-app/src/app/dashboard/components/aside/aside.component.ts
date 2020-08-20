@@ -3,6 +3,7 @@ import { DashboardService } from '../../dashboard.service';
 import { searchAnim } from 'src/app/app-animations';
 import { Subscription, fromEvent, BehaviorSubject } from 'rxjs';
 import { DataRepositoryService } from 'src/app/model/data-repository.service';
+import { log } from 'console';
 
 
 @Component({
@@ -13,10 +14,10 @@ import { DataRepositoryService } from 'src/app/model/data-repository.service';
 })
 export class AsideComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('countryInput') country;
-  public errMessage = '';
-  public allCitiesList = require('../../../../assets/city.list.json');
-  public sidebarToggle = false;
+  // Data
   public dataWeather = [];
+  public allCitiesList = require('../../../../assets/city.list.json');
+  // to HTML
   public mainWeatherCond = 'Sunny';
   public currentTemp: number;
   public weatherDescription: string;
@@ -24,6 +25,7 @@ export class AsideComponent implements OnInit, OnDestroy, AfterViewInit {
   public sunriseTime: Date;
   public sunsetTime: Date;
   public windSpeed: number;
+  public sidebarToggle = false;
   private dataSubs$: Subscription;
 
   constructor(private service: DashboardService, private dataRepository: DataRepositoryService) { }
@@ -32,11 +34,11 @@ export class AsideComponent implements OnInit, OnDestroy, AfterViewInit {
     fromEvent(this.country.nativeElement, 'change').subscribe((e: {target}) => {
      const country = this.allCitiesList.find(c => c.name.toLowerCase() === e.target.value.toLowerCase());
      if (country) {
-      this.dataRepository.getWeatherData(country.coord.lat, country.coord.lon);
-      this.errMessage = '';
-     } else {
-        this.errMessage = 'incorrect city name';
-     }
+       this.dataRepository.getWeatherData(country.coord.lat, country.coord.lon);
+       this.service.isWrongCity.next(false);
+      } else {
+        this.service.isWrongCity.next(true);
+      }
     });
   }
 
@@ -47,12 +49,11 @@ export class AsideComponent implements OnInit, OnDestroy, AfterViewInit {
       if (this.dataWeather.length > 0) {
          this.getDataForHTML(this.dataWeather);
       }
-      console.log(this.dataWeather)
    });
   }
 
   getDataForHTML(data) {
-    this.currentTemp = Math.floor(data[0].main.temp);
+    this.currentTemp = Math.round(data[0].main.temp);
     this.mainWeatherCond = data[0].weather[0].main;
     this.weatherDescription = data[0].weather[0].description;
     this.currentDate = new Date(data[0].dt * 1000);

@@ -23,6 +23,7 @@ export class DashboardComponent
   public sidebarToggle;
   public dateReceived: boolean;
   public currentCityName: string;
+  public wrongCityErr = '';
 
   constructor(
     private dataRepository: DataRepositoryService,
@@ -35,6 +36,9 @@ export class DashboardComponent
       : this.service.sidebarToggle.next(true);
   }
   ngOnInit(): void {
+    this.service.isWrongCity.subscribe(res => res
+      ? this.wrongCityErr = 'wrong city name'
+      : this.wrongCityErr = '');
     this.service.sidebarToggle.subscribe((res) => (this.sidebarToggle = res));
     this.dataRepository.currentOneDayWr.subscribe(res => {
      if (res.length > 0) {

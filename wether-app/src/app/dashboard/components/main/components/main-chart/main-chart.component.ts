@@ -19,15 +19,15 @@ export class MainChartComponent implements OnInit {
   ngOnInit(): void {
     this.dataRepository.currentMultyWeather.subscribe((res) => {
       if (res.length > 0) {
-        this.weatherData = res[0].daily;
+        this.weatherData = res;
         this.allDates = this.service.getDates(this.weatherData);
         this.maxTemps = this.service.getTemps(this.weatherData, 'max');
         this.minTemp = this.service.getTemps(this.weatherData, 'min');
 
         Chart.defaults.global.defaultFontColor = 'rgb(192, 191, 191)';
         Chart.defaults.global.defaultFontFamily = 'Poppins, sans-serif';
-        (Chart.defaults.global.defaultFontSize = 9),
-        this.mainChart = new Chart('chart', {
+        (Chart.defaults.global.defaultFontSize = 11);
+        this.mainChart = new Chart('main_chart', {
           type: 'line',
           data: {
             labels: this.allDates,

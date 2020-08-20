@@ -6,15 +6,16 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DashboardService {
   public sidebarToggle = new BehaviorSubject(false);
+  public isWrongCity = new BehaviorSubject(false);
   constructor() { }
 
   getDates(arr: [{dt}]) {
     const dates = [];
     arr.forEach((i) => {
-      let date;
-      date = `${new Date(i.dt * 1000).getDate()}.${new Date(i.dt * 1000).getMonth()}`;
-      dates.push(date);
-    });
+      const date = new Date(i.dt);
+      const dateStr = `${date.getDate()}.${date.getMonth()}`;
+      dates.push(dateStr);
+    })
     return dates;
   }
   getTemps(arr: [{temp}], MinMax: string) {

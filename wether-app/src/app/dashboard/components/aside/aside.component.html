@@ -4,10 +4,9 @@
             <i class="fas fa-search"></i>
             <input list="list" #countryInput type="text" placeholder="Search for a city">
             <!-- <datalist id="list">
-                <option *ngFor="let c of filteredCities" value="{{c.name}}">
+                <option *ngFor="let c of allCitiesNamesList" value="{{c}}">
             </datalist> -->
             <i class="fas fa-map-pin"></i>
-            <small *ngIf="errMessage">{{errMessage}}</small>
         </div>
         <div [class.minIco]="sidebarToggle" class="sidebar_icons_wrapper" [ngSwitch]="mainWeatherCond">
             <i *ngSwitchCase="'Sunny'"  class="ico far fa-sun"></i>
@@ -16,8 +15,7 @@
             <i *ngSwitchCase="'Rain'" class="ico fas fa-cloud-showers-heavy"></i>
         </div>
         <div class="sidebar_temp_date">
-          <div [class.minTemp]="sidebarToggle" class="temp">{{currentTemp}} 
-              <span>C</span> 
+          <div [class.minTemp]="sidebarToggle" class="temp">{{currentTemp}}&#176;
               <small>{{weatherDescription}}</small>
          </div>
           <div [class.minDate]="sidebarToggle" class="date">{{currentDate |date: 'E HH:mm a'}}</div>

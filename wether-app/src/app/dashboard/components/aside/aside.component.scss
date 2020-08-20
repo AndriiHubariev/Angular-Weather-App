@@ -32,6 +32,10 @@
             color: red;
             bottom: 0;
         }
+        i:hover {
+            transform: scale(1.15);
+            cursor: pointer;
+        }
     }
     // ----- end of search ----- //
     // ----- picture ----- //
@@ -64,12 +68,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            span {
-                position: absolute;
-                top: 0;
-                left: 35%;
-                font-size: .9rem;
-            }
             small {
                 font-size: .7rem;
                 margin-left: 30px;
@@ -121,12 +119,8 @@
     }
 }
 .minTemp {
-
     small {
         display: none;
-    }
-    span {
-        right: -40%;
     }
 }
 .minAddition {

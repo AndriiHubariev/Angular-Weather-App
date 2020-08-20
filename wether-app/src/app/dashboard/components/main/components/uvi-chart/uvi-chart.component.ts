@@ -17,12 +17,12 @@ export class UviChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataRepository.currentMultyWeather.subscribe(res => {
-      this.weatherData = res;
       if (res.length > 0) {
-        this.weatherData = res[0].daily;
+        this.weatherData = res;
         this.dates = this.service.getDates(this.weatherData);
         this.weatherData.forEach(e => {
            this.uvi.push(e.uvi);
+           this.uvi.splice(8, this.uvi.length);
         });
         this.uviChart = new Chart('uviChart', {
           type: 'bar',
@@ -53,8 +53,8 @@ export class UviChartComponent implements OnInit {
                 {
                   ticks: {
                     min: 0,
-                    max: 11,
-                    stepSize: 1,
+                    max: 20,
+                    stepSize: 2,
                   },
                   drawborder: false,
                 },
