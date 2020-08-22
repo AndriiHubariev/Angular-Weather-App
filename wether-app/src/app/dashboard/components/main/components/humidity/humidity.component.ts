@@ -9,7 +9,6 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
   styleUrls: ['./humidity.component.scss']
 })
 export class HumidityComponent implements OnInit {
-  @ViewChild('humCanvas') humCanvas;
   public humChart: Chart = [];
   public humidityStat;
   public dates = []
@@ -23,8 +22,7 @@ export class HumidityComponent implements OnInit {
         res.forEach(d => this.humidityStat.push(d.humidity));
         this.dates = this.service.getDates(res);
         if (this.humChart.canvas) {
-          this.humCanvas.nativeElement.childNodes[1].remove();
-          this.humCanvas.nativeElement.innerHTML = '<canvas id="hum_chart">{{humChart}}</canvas>';
+          this.humChart.destroy();
         }
         this.humChart = new Chart ('hum_chart', {
           type: 'bar',

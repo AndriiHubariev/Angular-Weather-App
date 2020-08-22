@@ -10,7 +10,6 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
   styleUrls: ['./uvi-chart.component.scss']
 })
 export class UviChartComponent implements OnInit, AfterContentInit {
-  @ViewChild('Chart') canvas;
   public uviChart: Chart = [];
   private weatherData;
   private dates = [];
@@ -30,8 +29,7 @@ export class UviChartComponent implements OnInit, AfterContentInit {
         });
         this.uvi = arr;
         if (this.uviChart.canvas) {
-          this.canvas.nativeElement.childNodes[1].remove();
-          this.canvas.nativeElement.innerHTML = '<canvas id="uviChart">{{uviChart}}</canvas>';
+          this.uviChart.destroy();
         }
         this.uviChart = new Chart('uviChart', {
           type: 'bar',

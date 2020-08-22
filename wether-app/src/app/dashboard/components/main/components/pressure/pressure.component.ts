@@ -9,7 +9,6 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
   styleUrls: ['./pressure.component.scss']
 })
 export class PressureComponent implements OnInit {
-@ViewChild('Prescanvas') Prescanvas;
   public pressureChart: Chart = [];
   public weatherDataPressure;
   public dates = [];
@@ -27,8 +26,7 @@ export class PressureComponent implements OnInit {
         });
         this.pressureStats = arr;
         if (this.pressureChart.canvas) {
-          this.Prescanvas.nativeElement.childNodes[1].remove();
-          this.Prescanvas.nativeElement.innerHTML = '<canvas id="pressure_chart">{{pressureChart}}</canvas>';
+          this.pressureChart.destroy();
         }
         this.pressureChart = new Chart('pressure_chart', {
           type: 'line',
@@ -41,7 +39,6 @@ export class PressureComponent implements OnInit {
                 backgroundColor: 'rgb(68, 184, 172, .8)',
                 borderColor: ['rgb(68, 184, 172, .8)'],
                 borderWidth: 3,
-                pointBorderColor: 'rgb(68, 184, 172, .8))',
                 fill: false,
               },
             ],

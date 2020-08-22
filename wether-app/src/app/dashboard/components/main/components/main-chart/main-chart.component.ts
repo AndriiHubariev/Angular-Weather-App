@@ -9,7 +9,6 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
   styleUrls: ['./main-chart.component.scss'],
 })
 export class MainChartComponent implements OnInit {
-  @ViewChild('tempCanvas') tempCanvas;
   private weatherData;
   public mainChart: Chart = [];
   private allDates = [];
@@ -29,8 +28,7 @@ export class MainChartComponent implements OnInit {
         Chart.defaults.global.defaultFontFamily = 'Poppins, sans-serif';
         (Chart.defaults.global.defaultFontSize = 11);
         if (this.mainChart.canvas) {
-          this.tempCanvas.nativeElement.childNodes[1].remove();
-          this.tempCanvas.nativeElement.innerHTML = '<canvas id="main_chart">{{mainChart}}</canvas>';
+          this.mainChart.destroy()
         }
         this.mainChart = new Chart('main_chart', {
           type: 'line',

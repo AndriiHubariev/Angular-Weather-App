@@ -9,7 +9,6 @@ import { Chart } from 'chart.js';
   styleUrls: ['./wind.component.scss']
 })
 export class WindComponent implements OnInit {
-  @ViewChild('windCanvas') windCanvas;
   public windChart: Chart = [];
   private dates;
   private windSpeedStat = []
@@ -22,8 +21,7 @@ export class WindComponent implements OnInit {
         this.windSpeedStat = [];
         res.forEach(d => this.windSpeedStat.push(d.wind_speed));
         if (this.windChart.canvas) {
-          this.windCanvas.nativeElement.childNodes[1].remove();
-          this.windCanvas.nativeElement.innerHTML = '<canvas id="windChart">{{windChart}}</canvas>';
+          this.windChart.destroy();
         }
         this.windChart = new Chart('windChart', {
           type: 'line',
@@ -36,7 +34,6 @@ export class WindComponent implements OnInit {
                 backgroundColor: 'rgb(68, 184, 172, .8)',
                 borderColor: ['rgb(68, 184, 172, .8)'],
                 borderWidth: 3,
-                pointBorderColor: 'rgb(68, 184, 172, .8))',
                 fill: false,
               },
             ],
