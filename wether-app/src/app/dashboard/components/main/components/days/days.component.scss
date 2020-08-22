@@ -5,11 +5,11 @@
     height: 100%;
     border-radius: 8px;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     grid-gap: 10px;
     min-width: 1100px;
 
-    .day {
+    .oneDay {
         border-radius: 8px;
         box-shadow: 0 0 3px 0px rgb(14, 13, 13);
         background-color: $content-background-color;
@@ -22,13 +22,13 @@
             font-size: 50px;
         }
     }
-    .minMax {
+    .dayNight {
         display: flex;
         justify-content: space-evenly;
-        .max {
-            color: rgb(247, 62, 62);
+        .day {
+            color: rgb(247, 205, 92);
         }
-        .min {
+        .night {
             color: rgb(73, 73, 248);
         }
     }

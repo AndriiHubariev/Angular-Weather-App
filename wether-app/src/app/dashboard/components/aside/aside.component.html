@@ -1,14 +1,12 @@
-<div [class.minSidebar]="sidebarToggle" class="sidebar">
-    <div   class="sidebar_full">
-        <div [@searchAnim] [class.minSearch]="sidebarToggle"  class="sidebar_search">
+<div (swipeleft)="swipeSidebar($event)" [class.minSidebar]="sidebarToggle" class="sidebar">
+    <div class="sidebar_full">
+        <div class="sidebar_search" [class.minSearch]="sidebarToggle">
             <i class="fas fa-search"></i>
-            <input list="list" #countryInput type="text" placeholder="Search for a city">
-            <!-- <datalist id="list">
-                <option *ngFor="let c of allCitiesNamesList" value="{{c}}">
-            </datalist> -->
+            <input #countryInput type="text" placeholder="Search for a city">
             <i class="fas fa-map-pin"></i>
         </div>
         <div [class.minIco]="sidebarToggle" class="sidebar_icons_wrapper" [ngSwitch]="mainWeatherCond">
+            <i *ngSwitchCase="'Mist'" class="fas fa-smog"></i>
             <i *ngSwitchCase="'Sunny'"  class="ico far fa-sun"></i>
             <i *ngSwitchCase="'Clear'"  class="ico far fa-sun"></i>
             <i *ngSwitchCase="'Clouds'" class="ico fas fa-cloud"></i>
@@ -18,7 +16,7 @@
           <div [class.minTemp]="sidebarToggle" class="temp">{{currentTemp}}&#176;
               <small>{{weatherDescription}}</small>
          </div>
-          <div [class.minDate]="sidebarToggle" class="date">{{currentDate |date: 'E HH:mm a'}}</div>
+          <div [class.minDate]="sidebarToggle" class="date">{{currentDate |date: 'E HH:mm'}}</div>
         </div>
         <div  class="addition_content">
             <div [class.minAddition]="sidebarToggle" class="addition wind">

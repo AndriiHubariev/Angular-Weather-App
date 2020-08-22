@@ -29,5 +29,8 @@ export const sidebarAnim = trigger('sidebarAnim', [
   transition('void => *', useAnimation(fadeInLeft, {params: {timing: .5}})),
 ]);
 export const daysAnim = trigger('daysAnim', [
-  transition('void => *', useAnimation(zoomIn, {params: {timing: .5}})),
+  transition('void => *', useAnimation(zoomIn, {params: {timing: 1}})),
+]);
+export const showArrow = trigger('showArrow', [
+  transition('void => *', useAnimation(fadeInRight, {params: {timing: .5}})),
 ]);

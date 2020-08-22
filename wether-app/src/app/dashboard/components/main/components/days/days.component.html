@@ -1,15 +1,16 @@
 <div class="wrapper">
-    <div [@daysAnim] *ngFor="let d of weatherDataDays" class="day">
+    <div [@daysAnim] *ngFor="let d of weatherDataDays" class="oneDay">
         <div class="weekDay">{{d.dt |date: 'E'}}</div>
         <div [ngSwitch]="weatherDataDays[0].weather[0].main" class="icon">
+            <i *ngSwitchCase="'Mist'" class="fas fa-smog"></i>
             <i *ngSwitchCase="'Sunny'"  class="ico far fa-sun"></i>
             <i *ngSwitchCase="'Clear'"  class="ico far fa-sun"></i>
             <i *ngSwitchCase="'Clouds'" class="ico fas fa-cloud"></i>
             <i *ngSwitchCase="'Rain'" class="ico fas fa-cloud-showers-heavy"></i>
         </div>
-        <div class="minMax">
-            <span class="max">{{d.temp.max |number: '1.0-0'}}&#176;</span>
-            <span class="min">{{d.temp.min |number: '1.0-0' }}&#176;</span>
+        <div class="dayNight">
+            <span class="day"><i class="fas fa-sun"></i>{{d.temp.day |number: '1.0-0'}}&#176;</span>
+            <span class="night"><i class="ico far fa-moon"></i>{{d.temp.night |number: '1.0-0' }}&#176;</span>
         </div>
     </div>
 </div>

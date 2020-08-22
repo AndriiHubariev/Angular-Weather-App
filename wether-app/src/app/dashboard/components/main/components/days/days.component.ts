@@ -18,7 +18,7 @@ export class DaysComponent implements OnInit {
   ngOnInit(): void {
     this.dateRepository.currentMultyWeather.subscribe(res => {
       if (res.length > 0) {
-        this.weatherDataDays = res;
+        this.weatherDataDays = res.filter((i, idx) => idx !== 0);
       }
     });
   }

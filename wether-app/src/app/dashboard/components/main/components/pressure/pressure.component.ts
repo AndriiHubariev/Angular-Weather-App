@@ -20,30 +20,28 @@ export class PressureComponent implements OnInit {
       if (res.length > 0) {
         this.weatherDataPressure = res;
         this.dates = this.service.getDates(this.weatherDataPressure);
+        this.pressureStats = [];
         this.weatherDataPressure.forEach(e => {
            this.pressureStats.push(e.pressure);
-           this.pressureStats.splice(8, this.pressureStats.length);
         });
         this.pressureChart = new Chart('pressure_chart', {
-          type: 'bar',
+          type: 'line',
           data: {
             labels: this.dates,
             datasets: [
               {
                 label: 'Pressure',
                 data: this.pressureStats,
-                fill: false
+                backgroundColor: 'rgb(68, 184, 172, .8)',
+                borderColor: ['rgb(68, 184, 172, .8)'],
+                borderWidth: 3,
+                pointBorderColor: 'rgb(68, 184, 172, .8))',
+                fill: false,
               },
             ],
           },
           options: {
             responsive: true,
-            elements: {
-              rectangle: {
-                borderColor: 'rgb(37, 37, 245)',
-                borderWidth: 2
-              }
-            },
             maintainAspectRatio: false,
             legend: {
               display: true,
@@ -51,17 +49,28 @@ export class PressureComponent implements OnInit {
             scales: {
               yAxes: [
                 {
+                  gridLines: false,
+                  color: ['rgb(255, 72, 0, .1)'],
+                  drawborder: false,
                   // ticks: {
                   //   min: 0,
-                  //   max: 20,
-                  //   stepSize: 2,
+                  //   max: 60,
+                  //   stepSize: 5,
                   // },
-                  drawborder: false,
                 },
               ],
               xAxes: [
                 {
                   gridLines: {
+                    color: [
+                     'rgb(255, 72, 0, .0)',
+                     'rgb(68, 184, 172, .1)',
+                     'rgb(68, 184, 172, .1)',
+                     'rgb(68, 184, 172, .1)',
+                     'rgb(68, 184, 172, .1)',
+                     'rgb(68, 184, 172, .1)',
+                     'rgb(68, 184, 172, .1)',
+                     'rgb(68, 184, 172, .1)'],
                     drawborder: false
                   },
                 },

@@ -31,16 +31,12 @@
     }
     .uvi {
         grid-area: uvi;
-        max-width: 400px;
-        @media (max-width: 1150px){
-            max-width: 100%;
-        }
     }
     .days {
         grid-area: days;
         background-color: transparent;
         box-shadow: none;
-        overflow: scroll;
+        overflow: auto;
     }
     .pressure {
         grid-area: pressure;

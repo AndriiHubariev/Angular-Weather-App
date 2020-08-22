@@ -16,12 +16,12 @@ export class DataSourceService {
 
   getMultipleWrByCr(lat, lon): Observable<{}> {
     return this.http.get(
-      `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${this.appiKey}&units=metric`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${this.appiKey}&units=metric`
     );
   }
   getCurrentOneDayWr(lat, lon): Observable<{}> {
     return this.http.get<{}>(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.appiKey}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.appiKey}&units=metric`
     );
   }
 }

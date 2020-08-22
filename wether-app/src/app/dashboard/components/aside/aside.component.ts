@@ -1,9 +1,9 @@
-import { Component, OnInit, AfterContentChecked, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { DashboardService } from '../../dashboard.service';
 import { searchAnim } from 'src/app/app-animations';
-import { Subscription, fromEvent, BehaviorSubject } from 'rxjs';
+import { Subscription, fromEvent } from 'rxjs';
 import { DataRepositoryService } from 'src/app/model/data-repository.service';
-import { log } from 'console';
+
 
 
 @Component({
@@ -41,17 +41,15 @@ export class AsideComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     });
   }
-
   ngOnInit(): void {
-   this.service.sidebarToggle.subscribe((res: boolean) => (this.sidebarToggle = res));
-   this.dataSubs$ = this.dataRepository.currentOneDayWr.subscribe((res: [{main, weather, sys, wind, data}]) => {
-      this.dataWeather = res;
-      if (this.dataWeather.length > 0) {
-         this.getDataForHTML(this.dataWeather);
-      }
+    this.service.sidebarToggle.subscribe((res: boolean) => (this.sidebarToggle = res));
+    this.dataSubs$ = this.dataRepository.currentOneDayWr.subscribe((res: [{main, weather, sys, wind, data}]) => {
+        this.dataWeather = res;
+        if (this.dataWeather.length > 0) {
+          this.getDataForHTML(this.dataWeather);
+        }
    });
   }
-
   getDataForHTML(data) {
     this.currentTemp = Math.round(data[0].main.temp);
     this.mainWeatherCond = data[0].weather[0].main;
@@ -61,7 +59,10 @@ export class AsideComponent implements OnInit, OnDestroy, AfterViewInit {
     this.sunsetTime = new Date(data[0].sys.sunset * 1000);
     this.windSpeed = data[0].wind.speed;
   }
-
+  swipeSidebar(e) {
+    console.log(e)
+    this.service.sidebarToggle.next(true)
+  }
   ngOnDestroy(): void {
     if (this.dataSubs$) {
       this.dataSubs$.unsubscribe();

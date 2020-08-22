@@ -20,9 +20,9 @@ export class UviChartComponent implements OnInit {
       if (res.length > 0) {
         this.weatherData = res;
         this.dates = this.service.getDates(this.weatherData);
+        this.uvi = [];
         this.weatherData.forEach(e => {
            this.uvi.push(e.uvi);
-           this.uvi.splice(8, this.uvi.length);
         });
         this.uviChart = new Chart('uviChart', {
           type: 'bar',
@@ -40,7 +40,8 @@ export class UviChartComponent implements OnInit {
             responsive: true,
             elements: {
               rectangle: {
-                borderColor: 'rgb(37, 37, 245)',
+                borderColor: 'rgb(255, 127, 80, .5)',
+                backgroundColor: 'rgb(255, 127, 80, .1)',
                 borderWidth: 2
               }
             },
