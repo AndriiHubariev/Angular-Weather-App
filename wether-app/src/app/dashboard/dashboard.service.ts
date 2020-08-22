@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, fromEvent } from 'rxjs';
+import { HammerGestureConfig } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,17 @@ export class DashboardService {
   public sidebarToggle = new BehaviorSubject(false);
   public isWrongCity = new BehaviorSubject(false);
   constructor() {
+    const docWidth = window.document.body.offsetWidth;
     // --- block the main side
     fromEvent(window, 'resize').subscribe((e: {target}) => {
-        e.target.document.body.offsetWidth > 500
-          ? document.body.style.overflow = 'visible'
-          : document.body.style.overflow = 'hidden',
-          this.sidebarToggle.next(false);
+        if (e.target.document.body.offsetWidth !== docWidth) {
+          e.target.document.body.offsetWidth < 500
+          ? document.body.style.overflow = 'hidden'
+          : document.body.style.overflow = 'visible';
+          if (e.target.document.body.offsetWidth > 500) {
+            this.sidebarToggle.next(false);
+            }
+        }
       });
     this.sidebarToggle.subscribe(res => {
       if (document.body.offsetWidth < 500) {

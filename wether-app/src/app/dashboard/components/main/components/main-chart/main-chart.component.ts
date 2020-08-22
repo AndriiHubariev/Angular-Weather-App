@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataRepositoryService } from 'src/app/model/data-repository.service';
 import { Chart } from 'chart.js';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
@@ -9,8 +9,9 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
   styleUrls: ['./main-chart.component.scss'],
 })
 export class MainChartComponent implements OnInit {
+  @ViewChild('tempCanvas') tempCanvas;
   private weatherData;
-  public mainChart = [];
+  public mainChart: Chart = [];
   private allDates = [];
   private maxTemps = [];
   private minTemp = [];
@@ -27,6 +28,10 @@ export class MainChartComponent implements OnInit {
         Chart.defaults.global.defaultFontColor = 'rgb(192, 191, 191)';
         Chart.defaults.global.defaultFontFamily = 'Poppins, sans-serif';
         (Chart.defaults.global.defaultFontSize = 11);
+        if (this.mainChart.canvas) {
+          this.tempCanvas.nativeElement.childNodes[1].remove();
+          this.tempCanvas.nativeElement.innerHTML = '<canvas id="main_chart">{{mainChart}}</canvas>';
+        }
         this.mainChart = new Chart('main_chart', {
           type: 'line',
           data: {

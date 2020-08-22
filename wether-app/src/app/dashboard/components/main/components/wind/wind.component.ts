@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataRepositoryService } from 'src/app/model/data-repository.service';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import { Chart } from 'chart.js';
@@ -9,6 +9,7 @@ import { Chart } from 'chart.js';
   styleUrls: ['./wind.component.scss']
 })
 export class WindComponent implements OnInit {
+  @ViewChild('windCanvas') windCanvas;
   public windChart: Chart = [];
   private dates;
   private windSpeedStat = []
@@ -20,6 +21,10 @@ export class WindComponent implements OnInit {
         this.dates = this.service.getDates(res);
         this.windSpeedStat = [];
         res.forEach(d => this.windSpeedStat.push(d.wind_speed));
+        if (this.windChart.canvas) {
+          this.windCanvas.nativeElement.childNodes[1].remove();
+          this.windCanvas.nativeElement.innerHTML = '<canvas id="windChart">{{windChart}}</canvas>';
+        }
         this.windChart = new Chart('windChart', {
           type: 'line',
           data: {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { DataRepositoryService } from 'src/app/model/data-repository.service';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
@@ -9,6 +9,7 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
   styleUrls: ['./pressure.component.scss']
 })
 export class PressureComponent implements OnInit {
+@ViewChild('Prescanvas') Prescanvas;
   public pressureChart: Chart = [];
   public weatherDataPressure;
   public dates = [];
@@ -20,10 +21,15 @@ export class PressureComponent implements OnInit {
       if (res.length > 0) {
         this.weatherDataPressure = res;
         this.dates = this.service.getDates(this.weatherDataPressure);
-        this.pressureStats = [];
+        const arr = [];
         this.weatherDataPressure.forEach(e => {
-           this.pressureStats.push(e.pressure);
+           arr.push(e.pressure);
         });
+        this.pressureStats = arr;
+        if (this.pressureChart.canvas) {
+          this.Prescanvas.nativeElement.childNodes[1].remove();
+          this.Prescanvas.nativeElement.innerHTML = '<canvas id="pressure_chart">{{pressureChart}}</canvas>';
+        }
         this.pressureChart = new Chart('pressure_chart', {
           type: 'line',
           data: {

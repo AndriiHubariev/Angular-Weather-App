@@ -8,7 +8,6 @@ import {
 import { DataRepositoryService } from '../model/data-repository.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { DashboardService } from './dashboard.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { sidebarAnim, showArrow} from '../app-animations';
 
 @Component({
