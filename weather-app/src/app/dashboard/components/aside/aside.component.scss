@@ -1,0 +1,134 @@
+@import '../../../variables.scss';
+.sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 630px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgb(37, 37, 37);
+    background: $aside-background-color;
+    padding: 20px;
+    transition: .3s linear;
+    overflow: hidden;
+    // ----- search start ----- //
+    .sidebar_search {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        input {
+            margin: 0 5px;
+            border: none;
+            background: transparent;
+            color: white;
+            max-width: 70%;
+        }
+        input::placeholder {
+            color: white;
+            max-width: 80%;
+        }
+        small {
+            position: absolute;
+            color: red;
+            bottom: 0;
+        }
+        i:hover {
+            transform: scale(1.15);
+            cursor: pointer;
+        }
+    }
+    // ----- end of search ----- //
+    // ----- picture ----- //
+    .sidebar_icons_wrapper{
+        height: 150px;
+        margin: 40px 0 40px;
+        text-align: center;
+        font-size: 150px;
+        i {
+            padding: 0;
+
+        }
+        i:hover {
+            transform: scale(1.0);
+            cursor: default;
+        }
+    }
+    // ----- end of the picture ----- //
+    // ----- temp and date ----- //
+    .sidebar_temp_date {
+        border-bottom: 1px solid rgb(255, 255, 255,.4);
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        .temp {
+            font-size: 4rem;
+            position: relative;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            small {
+                font-size: .7rem;
+                margin-left: 30px;
+                white-space: nowrap;
+                max-width: 80px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+        .date {
+            white-space: nowrap;
+            transition: all .2s linear;
+        }
+    }
+    // ----- end of temp and date ----- //
+    // ----- addition content ----- //
+    .addition_content {
+        font-size: .8rem;
+        margin-top: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        .addition {
+            display: flex;
+            align-items: center;
+            margin: 20px 0 0px;
+            justify-content: space-between;
+            i {
+                font-size: 1.5rem;
+            }
+        }
+        small {
+            white-space: nowrap;
+            margin-top: 20px;
+        }
+    }
+    // ----- end of the addition content ----- //
+}
+.minSidebar {
+    width: 100px;
+    text-align: center;
+    overflow: visible;
+}
+.minDate {
+    font-size: .8rem;
+}
+.minSearch {
+    width: 10px;
+    visibility: collapse;
+}
+.minIco {
+    i {
+        font-size: 80px;
+    }
+}
+.minTemp {
+    small {
+        display: none;
+    }
+}
+.minAddition {
+    flex-direction: column;
+}

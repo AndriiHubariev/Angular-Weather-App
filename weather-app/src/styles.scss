@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+@import './app/variables.scss';
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-weight: 1;
+    background: $main-background-color;
+}
+// aside toggle
+.sidebarMin {
+    width: 100px;
+}
+i {
+    transition: transform .3s;
+}
+.fa-sun {
+    color: rgb(245, 227, 177);
+}
+.fa-cloud-showers-heavy {
+    color: rgb(133, 187, 248);
+}
+.fa-smog {
+    color: rgb(218, 218, 218);
+}
+input {
+    outline: none;
+}
+html, body { height: 100%; }
+
