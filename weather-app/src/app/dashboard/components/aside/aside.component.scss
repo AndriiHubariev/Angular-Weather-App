@@ -12,6 +12,7 @@
     padding: 20px;
     transition: .3s linear;
     overflow: hidden;
+    z-index: 2;
     // ----- search start ----- //
     .sidebar_search {
         position: relative;

@@ -1,12 +1,9 @@
 import {
   Component,
   OnInit,
-  AfterViewInit,
-  AfterContentChecked,
   OnDestroy,
 } from '@angular/core';
 import { DataRepositoryService } from '../model/data-repository.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
 import { DashboardService } from './dashboard.service';
 import { sidebarAnim, showArrow} from '../app-animations';
 import { SubSink } from 'SubSink';

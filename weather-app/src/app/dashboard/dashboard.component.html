@@ -11,7 +11,12 @@
         </div>
     </header>
     <!-- end of the header -->
-    <mat-spinner class="spinner" *ngIf="!dateReceived"></mat-spinner>
-    <aside [class.hideSide]="sidebarToggle" *ngIf="dateReceived" [@sidebarAnim] [class.minAside]="sidebarToggle"><app-aside></app-aside></aside>
-    <main [class.hideMine]="!sidebarToggle" *ngIf="dateReceived"><app-main></app-main></main>  
+    <ng-template #content>
+      <app-aside></app-aside>
+      <app-main></app-main>
+    </ng-template>
+    <mat-spinner class="spinner" *ngIf="!dateReceived else content"></mat-spinner>
+    <!-- <aside [class.hideSide]="sidebarToggle" *ngIf="dateReceived" [class.minAside]="sidebarToggle">
+    </aside> -->
+    <!-- <main [class.hideMine]="!sidebarToggle" *ngIf="dateReceived"></main> -->
 </div>

@@ -1,18 +1,16 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { DashboardService } from '../../dashboard.service';
-import { searchAnim } from 'src/app/app-animations';
-import { Subscription, fromEvent } from 'rxjs';
+import { searchAnim, sidebarAnim } from 'src/app/app-animations';
+import { Subscription } from 'rxjs';
 import { DataRepositoryService } from 'src/app/model/data-repository.service';
-
-
 
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.scss'],
-  animations: [searchAnim]
+  animations: [searchAnim, sidebarAnim],
 })
-export class AsideComponent implements OnInit, OnDestroy{
+export class AsideComponent implements OnInit, OnDestroy {
   @ViewChild('countryInput') country;
   // Data
   public dataWeather = [];
@@ -31,34 +29,45 @@ export class AsideComponent implements OnInit, OnDestroy{
   public searchInputValue = '';
   public options = {
     componentRestrictions: {
-      country: ['UA']
-    }
+      country: ['UA'],
+    },
   };
 
-  constructor(private service: DashboardService, private dataRepository: DataRepositoryService) { }
+  constructor(
+    private service: DashboardService,
+    private dataRepository: DataRepositoryService
+  ) {}
   ngOnInit(): void {
-    this.service.sidebarToggle.subscribe((res: boolean) => (this.sidebarToggle = res));
-    this.dataSubs$ = this.dataRepository.currentOneDayWr.subscribe((res: [{main, weather, sys, wind, data}]) => {
+    this.service.sidebarToggle.subscribe(
+      (res: boolean) => (this.sidebarToggle = res)
+    );
+    this.dataSubs$ = this.dataRepository.currentOneDayWr.subscribe(
+      (res: [{ main; weather; sys; wind; data }]) => {
         this.dataWeather = res;
         if (this.dataWeather.length > 0) {
           this.getDataForHTML(this.dataWeather);
         }
-   });
+      }
+    );
   }
   searchCity(address: any) {
     let country;
     typeof address === 'string'
-    ? country = this.allCitiesList.find(c => c.name.toLowerCase().match(address.toLowerCase()))
-    : country = this.allCitiesList.find(c => c.name.toLowerCase().match(address.name.toLowerCase().split(' ')[0]));
+      ? (country = this.allCitiesList.find((c) =>
+          c.name.toLowerCase().match(address.toLowerCase())
+        ))
+      : (country = this.allCitiesList.find((c) =>
+          c.name.toLowerCase().match(address.name.toLowerCase().split(' ')[0])
+        ));
     if (country) {
       this.dataRepository.getWeatherData(country.coord.lat, country.coord.lon);
       this.service.isWrongCity.next(false);
-     } else {
-       this.service.isWrongCity.next(true);
-     }
+    } else {
+      this.service.isWrongCity.next(true);
+    }
   }
   getInputValue(e) {
-   this.searchInputValue = e.target.value;
+    this.searchInputValue = e.target.value;
   }
   getDataForHTML(data) {
     this.currentTemp = Math.round(data[0].main.temp);
