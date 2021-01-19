@@ -1,20 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { DataRepositoryService } from 'src/app/model/data-repository.service';
-import { Chart } from 'chart.js';
-import { DashboardService } from '../../dashboard.service';
-import { Observable } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
-  toggleSidebar: Observable<boolean>;
-  constructor(private service: DashboardService) { }
-
-  ngOnInit(): void {
-    this.toggleSidebar = this.service.sidebarToggle;
-   }
+export class MainComponent {
+  @Input() toggleSidebarState: boolean;
 
 }

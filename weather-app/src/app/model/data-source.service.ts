@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { LocationService } from './location.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +8,7 @@ import { LocationService } from './location.service';
 export class DataSourceService {
   private appiKey = 'a14f52971f65d65431b884a2a65010c2';
 
-  constructor(private http: HttpClient, private geo: LocationService) {}
+  constructor(private http: HttpClient) {}
 
   // Wr = Weather
   // Cr = Coordinates

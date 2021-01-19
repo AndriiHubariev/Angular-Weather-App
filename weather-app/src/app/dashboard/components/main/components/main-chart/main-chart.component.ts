@@ -67,8 +67,6 @@ export class MainChartComponent implements OnInit {
                   color: ['rgb(255, 72, 0, .1)'],
                   drawborder: false,
                   ticks: {
-                    min: 0,
-                    max: 60,
                     stepSize: 5,
                   },
                 },

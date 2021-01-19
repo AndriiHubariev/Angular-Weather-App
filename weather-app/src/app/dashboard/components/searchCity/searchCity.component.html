@@ -1,0 +1,29 @@
+<div class="searchContainer">
+  <i (click)="closeSearch()" class="far fa-window-close"></i>
+  <form class="form">
+    <mat-form-field color="accent">
+      <input
+        type="text"
+        placeholder="search"
+        matInput
+        [formControl]="cytiesControl"
+        [matAutocomplete]="auto"
+        />
+        <small style="color: red;" *ngIf="errorMessage">{{errorMessage}}</small>
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option.name"
+          >
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button
+      [disabled]="!cytiesControl.value"
+      mat-button color="danger"
+      (click)="submitCity()"
+      >submit
+    </button>
+  </form>
+</div>

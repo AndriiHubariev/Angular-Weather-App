@@ -22,21 +22,26 @@ export class DashboardComponent
   public currentCityName: string;
   public wrongCityErr = '';
   private subs$ =  new SubSink();
+  public isSearchingCity = false;
 
   constructor(
     private dataRepository: DataRepositoryService,
-    private service: DashboardService
   ) {}
-  sidebarToogle() {
-    this.sidebarToggle
-      ? this.service.sidebarToggle.next(false)
-      : this.service.sidebarToggle.next(true);
+
+  toggleSearchCity(state: boolean) {
+    this.isSearchingCity = state;
+    if (this.isSearchingCity) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }
+
+  sidebarToogle(state: boolean) {
+    this.sidebarToggle = state;
+  }
+
   ngOnInit(): void {
-    this.subs$.sink = this.service.isWrongCity.subscribe(res => res
-      ? this.wrongCityErr = 'wrong city name'
-      : this.wrongCityErr = '');
-    this.subs$.sink = this.service.sidebarToggle.subscribe((res) => this.sidebarToggle = res);
     this.subs$.sink = this.dataRepository.currentOneDayWr.subscribe(res => {
      if (res.length > 0) {
        this.dateReceived = true;
