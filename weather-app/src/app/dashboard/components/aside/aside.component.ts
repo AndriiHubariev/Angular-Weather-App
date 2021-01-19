@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ViewChild, Output, EventEmitter } from '@angular/core';
-import { DashboardService } from '../../dashboard.service';
 import { searchAnim, sidebarAnim } from 'src/app/app-animations';
 import { Subscription } from 'rxjs';
 import { DataRepositoryService } from 'src/app/model/data-repository.service';
@@ -26,13 +25,6 @@ export class AsideComponent implements OnInit, OnDestroy {
   public windSpeed: number;
   public sidebarToggleState = false;
   private dataSubs$: Subscription;
-  public choosedCity = '';
-  public searchInputValue = '';
-  public options = {
-    componentRestrictions: {
-      country: ['UA'],
-    },
-  };
 
   constructor(
     private dataRepository: DataRepositoryService

@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { DataRepositoryService } from 'src/app/model/data-repository.service';
 
 interface City {
   id: number;
@@ -27,11 +28,10 @@ export class SearchCityComponent implements OnInit {
   public allCitiesList: City[] = require('../../../../assets/city.list.json');
   public filteredCities: City[] = this.allCitiesList.filter((city: City) => city.country === 'UA');
   public cytiesControl = new FormControl();
-  public options: City[] = [...this.filteredCities];
   public filteredOptions: Observable<City[]>;
+  public errorMessage = '';
 
-
-  constructor() { }
+  constructor(private dataRepositoryService: DataRepositoryService) { }
 
   ngOnInit() {
     this.filteredOptions = this.cytiesControl.valueChanges.pipe(
@@ -42,12 +42,26 @@ export class SearchCityComponent implements OnInit {
 
   private _filter(value: string): City[] {
     const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.filteredCities.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   closeSearch() {
     this.onCloseSearch.emit(IS_CLOSED_SEARCH);
+  }
+
+  submitCity() {
+    if (this.cytiesControl.value.trim()) {
+      const newCity = this.allCitiesList
+      .find((city: City) => city.name.toLowerCase() === this.cytiesControl.value.toLowerCase())
+      if (newCity) {
+        this.errorMessage = ''
+        this.cytiesControl.setValue('');
+        this.dataRepositoryService.getWeatherData(newCity.coord.lat, newCity.coord.lon);
+        this.closeSearch();
+      } else {
+        this.errorMessage = 'city name is wrong'
+      }
+    }
   }
 
 }

@@ -18,11 +18,12 @@ import { HumidityComponent } from './components/main/components/humidity/humidit
 import { WindComponent } from './components/main/components/wind/wind.component';
 import { DirectiveDirective } from '../dashboard/directive.directive';
 import { HeaderComponent } from './components/header/header.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { SearchCityComponent } from './components/searchCity/searchCity.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     WindComponent,
     DirectiveDirective,
     HeaderComponent,
-    SearchCityComponent
+    SearchCityComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +51,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatAutocompleteModule,
     MatFormFieldModule,
     GooglePlaceModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [DashboardService],
   exports: [DashboardComponent],
