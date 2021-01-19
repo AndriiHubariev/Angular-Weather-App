@@ -17,6 +17,12 @@ import { PressureComponent } from './components/main/components/pressure/pressur
 import { HumidityComponent } from './components/main/components/humidity/humidity.component';
 import { WindComponent } from './components/main/components/wind/wind.component';
 import { DirectiveDirective } from '../dashboard/directive.directive';
+import { HeaderComponent } from './components/header/header.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { SearchCityComponent } from './components/searchCity/searchCity.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,9 @@ import { DirectiveDirective } from '../dashboard/directive.directive';
     PressureComponent,
     HumidityComponent,
     WindComponent,
-    DirectiveDirective
+    DirectiveDirective,
+    HeaderComponent,
+    SearchCityComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +46,11 @@ import { DirectiveDirective } from '../dashboard/directive.directive';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    GooglePlaceModule
+    MatTooltipModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    GooglePlaceModule,
+    MatInputModule
   ],
   providers: [DashboardService],
   exports: [DashboardComponent],

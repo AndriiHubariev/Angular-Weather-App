@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DataSourceService } from './data-source.service';
 import { LocationService } from './location.service';
-import { BehaviorSubject, forkJoin } from 'rxjs';
-import { mergeMap, map, filter } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
 
 
 @Injectable({

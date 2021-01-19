@@ -1,0 +1,22 @@
+<div class="searchContainer">
+  <i (click)="closeSearch()" class="far fa-window-close"></i>
+  <form class="form">
+    <mat-form-field>
+      <input
+        type="text"
+        placeholder="search"
+        matInput
+        [formControl]="cytiesControl"
+        [matAutocomplete]="auto"
+        />
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option.name"
+          >
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
