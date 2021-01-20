@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModelModule } from '../model/model.module';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -9,7 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DashboardComponent } from './dashboard.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { MainComponent } from './components/main/main.component';
-import { DashboardService } from './dashboard.service';
+import { DashboardService } from '../services/dashboard.service';
 import { MainChartComponent } from './components/main/components/main-chart/main-chart.component';
 import { UviChartComponent } from './components/main/components/uvi-chart/uvi-chart.component';
 import { DaysComponent } from './components/main/components/days/days.component';
@@ -24,6 +23,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { reducer } from './store/reducers';
+import { StoreModule } from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+
+const routes: Routes = [
+  {
+    path: '', component: DashboardComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -42,7 +50,6 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   imports: [
     CommonModule,
-    ModelModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
@@ -52,7 +59,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     GooglePlaceModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule.forChild(routes),
+    StoreModule.forFeature('dashboard', reducer),
+    EffectsModule.forFeature([])
   ],
   providers: [DashboardService],
   exports: [DashboardComponent],

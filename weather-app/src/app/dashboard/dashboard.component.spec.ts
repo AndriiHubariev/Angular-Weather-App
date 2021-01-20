@@ -1,7 +1,7 @@
 import { DashboardComponent } from './dashboard.component';
-import { DataRepositoryService } from '../model/data-repository.service';
-import { DashboardService } from './dashboard.service';
-import { LocationService } from '../model/location.service';
+import { DataRepositoryService } from '../services/data-repository.service';
+import { DashboardService } from '../services/dashboard.service';
+import { LocationService } from '../services/location.service';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;

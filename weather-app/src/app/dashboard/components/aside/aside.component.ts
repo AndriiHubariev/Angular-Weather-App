@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, Output, EventEmitter } from '@angular/core';
 import { searchAnim, sidebarAnim } from 'src/app/app-animations';
 import { Subscription } from 'rxjs';
-import { DataRepositoryService } from 'src/app/model/data-repository.service';
+import { DataRepositoryService } from 'src/app/services/data-repository.service';
 
 @Component({
   selector: 'app-aside',

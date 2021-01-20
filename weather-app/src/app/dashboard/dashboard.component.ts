@@ -3,8 +3,8 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import { DataRepositoryService } from '../model/data-repository.service';
-import { DashboardService } from './dashboard.service';
+import { DataRepositoryService } from '../services/data-repository.service';
+import { DashboardService } from '../services/dashboard.service';
 import { sidebarAnim, showArrow} from '../app-animations';
 import { SubSink } from 'SubSink';
 

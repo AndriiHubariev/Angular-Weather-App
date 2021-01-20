@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { DataRepositoryService } from 'src/app/model/data-repository.service';
+import { DataRepositoryService } from 'src/app/services/data-repository.service';
 
 interface City {
   id: number;

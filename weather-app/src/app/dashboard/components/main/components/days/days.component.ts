@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataRepositoryService } from 'src/app/model/data-repository.service';
-import { DashboardService } from 'src/app/dashboard/dashboard.service';
+import { DataRepositoryService } from 'src/app/services/data-repository.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { daysAnim } from 'src/app/app-animations';
 
 @Component({

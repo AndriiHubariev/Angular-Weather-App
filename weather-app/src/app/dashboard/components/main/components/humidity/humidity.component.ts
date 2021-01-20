@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
-import { DataRepositoryService } from 'src/app/model/data-repository.service';
-import { DashboardService } from 'src/app/dashboard/dashboard.service';
+import { DataRepositoryService } from 'src/app/services/data-repository.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
   selector: 'app-humidity',

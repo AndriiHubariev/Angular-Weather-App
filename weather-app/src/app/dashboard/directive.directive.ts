@@ -2,7 +2,7 @@ import { Directive, ElementRef, Renderer2, HostListener, ViewChild, ViewChildren
 import { count } from 'console';
 import { delay } from 'rxjs/operators';
 import { DashboardComponent } from './dashboard.component';
-import { DataRepositoryService } from '../model/data-repository.service';
+import { DataRepositoryService } from '../services/data-repository.service';
 
 @Directive({
   selector: '[appDirective]'
