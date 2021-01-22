@@ -1,13 +1,16 @@
 <div class="wrapper">
-    <div [@daysAnim] *ngFor="let d of weatherDataDays" class="oneDay">
+    <div [@daysAnim] *ngFor="let d of daysData$ | async" class="oneDay">
         <div class="weekDay">{{d.dt |date: 'E'}}</div>
-        <div [ngSwitch]="weatherDataDays[0].weather[0].main" class="icon">
-            <i *ngSwitchCase="'Mist'" class="fas fa-smog"></i>
-            <i *ngSwitchCase="'Sunny'"  class="ico far fa-sun"></i>
-            <i *ngSwitchCase="'Clear'"  class="ico far fa-sun"></i>
-            <i *ngSwitchCase="'Clouds'" class="ico fas fa-cloud"></i>
-            <i *ngSwitchCase="'Rain'" class="ico fas fa-cloud-showers-heavy"></i>
-            <i *ngSwitchCase="'Thunderstorm'" class="fas fa-poo-storm"></i>
+        <div [ngSwitch]="d.weather[0].main" class="icon">
+          <i *ngSwitchCase="'Fog'" class="fas fa-smog"></i>
+          <i *ngSwitchCase="'Haze'" class="fas fa-smog"></i>
+          <i *ngSwitchCase="'Clouds'" class="fas fa-cloud"></i>
+          <i *ngSwitchCase="'Snow'" class="fas fa-snowflake"></i>
+          <i *ngSwitchCase="'Drizzle'" class="fas fa-cloud-rain"></i>
+          <i style="color: rgb(173, 172, 170);" *ngSwitchCase="'Mist'" class="fas fa-smog"></i>
+          <i style="color: rgb(247, 194, 95);" *ngSwitchCase="'Clear'" class="fas fa-sun"></i>
+          <i style="color: rgb(161, 183, 241);" *ngSwitchCase="'Rain'" class="fas fa-umbrella"></i>
+          <i style="color: rgb(241, 247, 164);" *ngSwitchCase="'Thunderstorm'" class="fas fa-bolt"></i>
         </div>
         <div class="dayNight">
             <span class="day"><i class="fas fa-sun"></i>{{d.temp.day |number: '1.0-0'}}&#176;</span>

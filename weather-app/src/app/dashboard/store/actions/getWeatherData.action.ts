@@ -5,12 +5,12 @@ import { ActionTypes } from '../actionTypes';
 
 export const getWeatherDataAction = createAction(
   ActionTypes.GET_WEATHER_DATA,
-  props<CoordsInterface>()
+  props<{coords: CoordsInterface}>()
 );
 
 export const getWeatherDataSuccessAction = createAction(
   ActionTypes.GET_WEATHER_DATA_SUCCESS,
-  props<ResponseWeatherDataInterface>()
+  props<{data: ResponseWeatherDataInterface}>()
 );
 
 export const getWeatherDataFailureAction = createAction(

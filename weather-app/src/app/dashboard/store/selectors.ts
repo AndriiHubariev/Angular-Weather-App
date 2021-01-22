@@ -6,7 +6,12 @@ export const dashboardFutureSelector = createFeatureSelector<AppStateInterface, 
 
 export const WeatherDataSelector = createSelector(
   dashboardFutureSelector,
-    (dashboardState: DashboardStateInterface) => dashboardState.weatherData
+    (dashboardState: DashboardStateInterface) => {
+      return {
+        weatherData: dashboardState.weatherData,
+        chartsData: dashboardState.chartsData
+      };
+    }
 );
 export const LoadingStateSelector = createSelector(
   dashboardFutureSelector,

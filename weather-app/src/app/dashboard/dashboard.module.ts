@@ -8,14 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DashboardComponent } from './dashboard.component';
 import { AsideComponent } from './components/aside/aside.component';
 import { MainComponent } from './components/main/main.component';
-import { DashboardService } from '../services/dashboard.service';
-import { MainChartComponent } from './components/main/components/main-chart/main-chart.component';
-import { UviChartComponent } from './components/main/components/uvi-chart/uvi-chart.component';
 import { DaysComponent } from './components/main/components/days/days.component';
-import { PressureComponent } from './components/main/components/pressure/pressure.component';
-import { HumidityComponent } from './components/main/components/humidity/humidity.component';
-import { WindComponent } from './components/main/components/wind/wind.component';
-import { DirectiveDirective } from '../dashboard/directive.directive';
 import { HeaderComponent } from './components/header/header.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SearchCityComponent } from './components/searchCity/searchCity.component';
@@ -26,6 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { reducer } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import { ChartComponent } from './components/main/components/chart/chart.component';
+import { FetchEffect } from './store/effects/fetchWeatherData.effect';
 
 const routes: Routes = [
   {
@@ -38,15 +33,10 @@ const routes: Routes = [
     DashboardComponent,
     AsideComponent,
     MainComponent,
-    MainChartComponent,
-    UviChartComponent,
     DaysComponent,
-    PressureComponent,
-    HumidityComponent,
-    WindComponent,
-    DirectiveDirective,
     HeaderComponent,
     SearchCityComponent,
+    ChartComponent
   ],
   imports: [
     CommonModule,
@@ -62,9 +52,9 @@ const routes: Routes = [
     MatButtonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('dashboard', reducer),
-    EffectsModule.forFeature([])
+    EffectsModule.forFeature([FetchEffect])
   ],
-  providers: [DashboardService],
+  providers: [],
   exports: [DashboardComponent],
 })
 export class DashboardModule {}

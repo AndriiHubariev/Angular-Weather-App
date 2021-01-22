@@ -9,31 +9,30 @@ import {
   getWeatherDataFailureAction,
   getWeatherDataSuccessAction,
 } from '../actions/getWeatherData.action';
-import { CoordsInterface } from 'src/app/model/coords.interface';
 import { ResponseWeatherDataInterface } from 'src/app/model/responseWeatherData.interface';
 
 @Injectable()
 export class FetchEffect {
-  constructor(
-    private actions$: Actions,
-    private dataSourceService: DataSourceService
-  ) {}
-
-  register$ = createEffect(() =>
+  getWeatherData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getWeatherDataAction),
-      switchMap((coords: CoordsInterface) => {
+      switchMap(({coords}) => {
         return this.dataSourceService
           .getWeatherData(coords.lat, coords.lon)
           .pipe(
             map((response: ResponseWeatherDataInterface) => {
-              return getWeatherDataSuccessAction(response);
+              return getWeatherDataSuccessAction({data: response});
             }),
             catchError((errors: HttpErrorResponse) =>
-              of(getWeatherDataFailureAction(errors.error))
+              of(getWeatherDataFailureAction(errors))
             )
           );
       })
     )
   );
+
+  constructor(
+    private actions$: Actions,
+    private dataSourceService: DataSourceService
+  ) {}
 }

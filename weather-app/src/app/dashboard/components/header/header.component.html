@@ -1,6 +1,7 @@
 <header>
   <div class=" header_inner left">
-      <p>City: {{currentCityName}}</p>
+      <p *ngIf="cityName">City: {{cityName}}</p>
+      <p *ngIf="!cityName">City: {{cityNameFromServer$ | async}}</p>
       <small>{{wrongCityErr}}</small>
       <i (click)="searchCity()" matTooltip="search for a city" class="fas fa-search"></i>
   </div>

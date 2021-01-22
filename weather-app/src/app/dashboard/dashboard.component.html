@@ -1,27 +1,20 @@
-<app-searchCity
-  (onCloseSearch)="toggleSearchCity($event)"
-  >
-</app-searchCity>
+<app-searchCity (onCloseSearch)="toggleSearchCity($event)"> </app-searchCity>
 <div [class.isSearchingCity]="isSearchingCity" class="main_container">
   <app-header
-    [currentCityName]="currentCityName"
     [wrongCityErr]="wrongCityErr"
     (onSearchCity)="toggleSearchCity($event)"
-    >
+    [cityName]="cityName"
+  >
   </app-header>
-    <ng-template #content>
-      <app-aside
-        (onToggleSidebar)="sidebarToogle($event)"
-        >
-      </app-aside>
-      <app-main
-        [toggleSidebarState]="sidebarToggle"
-        >
-      </app-main>
-    </ng-template>
-    <mat-spinner
-      class="spinner"
-      *ngIf="!dateReceived else content"
+  <ng-template #content >
+    <app-aside
+      (onToggleSidebar)="sidebarToogle($event)"
       >
-    </mat-spinner>
+    </app-aside>
+    <app-main
+      [toggleSidebarState]="sidebarToggle"
+    >
+    </app-main>
+  </ng-template>
+  <mat-spinner *ngIf="isLoading$ | async; else content" class="spinner"> </mat-spinner>
 </div>
