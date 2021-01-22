@@ -1,8 +1,50 @@
-<div [class.full_size]="toggleSidebarState" class="charts_wrapper">
-    <div class="chart main_chart_wrap"><app-main-chart></app-main-chart></div>
-    <div class="chart uvi"><app-uvi-chart></app-uvi-chart></div>
-    <div class="chart days"><app-days></app-days></div>
-    <div class="chart pressure"><app-pressure></app-pressure></div>
-    <div class="chart humidity"><app-humidity></app-humidity></div>
-    <div class="chart wind"><app-wind></app-wind></div>
+<div
+  *ngIf="chartsData"
+  [class.full_size]="toggleSidebarState"
+  class="charts_wrapper"
+>
+  <div class="chart main_chart_wrap">
+    <app-chart
+      [maxTemp]="chartsData.maxTemp"
+      [minTemp]="chartsData.minTemp"
+      [dates]="chartsData.dates"
+      [chartType]="'line'"
+      [labelChart]="'temp'"
+    ></app-chart>
+  </div>
+  <div class="chart uvi">
+    <app-chart
+      [stat]="chartsData.uvi"
+      [dates]="chartsData.dates"
+      [chartType]="'bar'"
+      [labelChart]="'Uvi'"
+    ></app-chart>
+  </div>
+  <div class="chart days">
+    <app-days></app-days>
+  </div>
+  <div class="chart pressure">
+    <app-chart
+      [stat]="chartsData.pressure"
+      [dates]="chartsData.dates"
+      [chartType]="'line'"
+      [labelChart]="'Pressure'"
+    ></app-chart>
+  </div>
+  <div class="chart humidity">
+    <app-chart
+      [stat]="chartsData.humidity"
+      [dates]="chartsData.dates"
+      [chartType]="'bar'"
+      [labelChart]="'Humidity'"
+    ></app-chart>
+  </div>
+  <div class="chart wind">
+    <app-chart
+      [stat]="chartsData.wind"
+      [dates]="chartsData.dates"
+      [chartType]="'line'"
+      [labelChart]="'Wind'"
+    ></app-chart>
+  </div>
 </div>

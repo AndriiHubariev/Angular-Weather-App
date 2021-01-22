@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable, of, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocationService {
-  // public currentGeoLocation: Subject<{}> = new Subject();
-  // public locationDone = false;
 
   constructor() {}
 

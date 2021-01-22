@@ -1,43 +1,51 @@
-<div [@sidebarAnim] [class.minSidebar]="sidebarToggleState" class="sidebar">
-    <div class="sidebar_full">
-        <!-- <div class="sidebar_search" [class.minSearch]="sidebarToggleState">
-            <input
-              ngx-google-places-autocomplete
-              [options]='options'
-              (onAddressChange)="searchCity($event)"
-              (keyup)="getInputValue($event)"
-              placeholder="Search for a city">
-            <i (click)="searchCity(searchInputValue)" class="fas fa-search"></i>
-        </div> -->
-        <i  (click)="sidebarToogle()" class="fas fa-exchange-alt"></i>
-        <div [class.minIco]="sidebarToggleState" class="sidebar_icons_wrapper" [ngSwitch]="mainWeatherCond">
-            <i *ngSwitchCase="'Mist'" class="fas fa-smog"></i>
-            <i *ngSwitchCase="'Sunny'"  class="ico far fa-sun"></i>
-            <i *ngSwitchCase="'Clear'"  class="ico far fa-sun"></i>
-            <i *ngSwitchCase="'Clouds'" class="ico fas fa-cloud"></i>
-            <i *ngSwitchCase="'Rain'" class="ico fas fa-cloud-showers-heavy"></i>
-            <i *ngSwitchCase="'Thunderstorm'" class="fas fa-poo-storm"></i>
-        </div>
-        <div class="sidebar_temp_date">
-          <div [class.minTemp]="sidebarToggleState" class="temp">{{currentTemp}}&#176;
-              <small title="{{weatherDescription}}">{{weatherDescription}}</small>
-         </div>
-          <div [class.minDate]="sidebarToggleState" class="date">{{currentDate |date: 'E HH:mm'}}</div>
-        </div>
-        <div  class="addition_content">
-            <div [class.minAddition]="sidebarToggleState" class="addition wind">
-                 <i class="fas fa-wind"></i>
-                <span>{{windSpeed}} m/s</span>
-            </div>
-            <small>Sunrise & Sunset</small>
-            <div [class.minAddition]="sidebarToggleState" class="addition sunrise">
-                <i class="fas fa-arrow-circle-up"></i>
-                <span>{{sunriseTime |date: 'hh:mm a'}}</span>
-            </div>
-            <div [class.minAddition]="sidebarToggleState" class="addition sunset">
-                <i class="fas fa-arrow-circle-down"></i>
-                <span>{{sunsetTime |date: 'hh:mm a'}}</span>
-            </div>
-        </div>
+<div
+  *ngIf="weatherData"
+  [@sidebarAnim]
+  [class.minSidebar]="sidebarToggleState"
+  class="sidebar"
+>
+  <div class="sidebar_full">
+    <i (click)="sidebarToogle()" class="fas fa-exchange-alt"></i>
+    <div
+      [class.minIco]="sidebarToggleState"
+      class="sidebar_icons_wrapper"
+      [ngSwitch]="weatherData.weather[0].main || 'Clear'"
+    >
+    <i *ngSwitchCase="'Fog'" class="fas fa-smog"></i>
+    <i *ngSwitchCase="'Haze'" class="fas fa-smog"></i>
+    <i *ngSwitchCase="'Clouds'" class="fas fa-cloud"></i>
+    <i *ngSwitchCase="'Snow'" class="fas fa-snowflake"></i>
+    <i *ngSwitchCase="'Drizzle'" class="fas fa-cloud-rain"></i>
+    <i style="color: rgb(173, 172, 170);" *ngSwitchCase="'Mist'" class="fas fa-smog"></i>
+    <i style="color: rgb(247, 194, 95);" *ngSwitchCase="'Clear'" class="fas fa-sun"></i>
+    <i style="color: rgb(161, 183, 241);" *ngSwitchCase="'Rain'" class="fas fa-umbrella"></i>
+    <i style="color: rgb(241, 247, 164);" *ngSwitchCase="'Thunderstorm'" class="fas fa-bolt"></i>
     </div>
+    <div class="sidebar_temp_date">
+      <div [class.minTemp]="sidebarToggleState" class="temp">
+        {{ weatherData.temp | number: '1.0-0' }}&#176;
+        <small title="{{ weatherData.weather[0].description }}"
+          >{{ weatherData.weather[0].description }}
+        </small>
+      </div>
+      <div [class.minDate]="sidebarToggleState" class="date">
+        {{ weatherData.dt | date: "E HH:mm" }}
+      </div>
+    </div>
+    <div class="addition_content">
+      <div [class.minAddition]="sidebarToggleState" class="addition wind">
+        <i class="fas fa-wind"></i>
+        <span>{{ weatherData.wind_speed }} m/s</span>
+      </div>
+      <small>Sunrise & Sunset</small>
+      <div [class.minAddition]="sidebarToggleState" class="addition sunrise">
+        <i class="fas fa-arrow-circle-up"></i>
+        <span>{{ weatherData.sunrise | date: "hh:mm a" }}</span>
+      </div>
+      <div [class.minAddition]="sidebarToggleState" class="addition sunset">
+        <i class="fas fa-arrow-circle-down"></i>
+        <span>{{ weatherData.sunset | date: "hh:mm a" }}</span>
+      </div>
+    </div>
+  </div>
 </div>
