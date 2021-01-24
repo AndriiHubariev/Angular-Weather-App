@@ -9,6 +9,7 @@
   <ng-template #content >
     <app-aside
       (onToggleSidebar)="sidebarToogle($event)"
+      [class.sidebarToggle]="sidebarToggle"
       >
     </app-aside>
     <app-main

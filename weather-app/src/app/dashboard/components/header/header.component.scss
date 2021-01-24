@@ -2,11 +2,12 @@ header {
   position: absolute;
   top: 0;
   width: 100%;
+  max-width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 90px;
-  padding: 0 40px;
+  padding: 0 40px 0 0;
   .header_inner {
       display: flex;
       align-items: center;

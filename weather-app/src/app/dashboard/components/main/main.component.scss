@@ -1,7 +1,6 @@
 @import '../../../variables.scss';
 .charts_wrapper {
-    min-width: 77vw;
-    margin-left: 25%;
+    // min-width: 77vw;
     display: grid;
     grid-template-rows: 300px 150px 300px;
     grid-template-columns: repeat(3, 1fr);
@@ -53,9 +52,9 @@
     }
 }
 .full_size {
-  min-width: 88vw;
-  margin-left: 125px;
-  @media(max-width: 1150px) {
-    min-width: 60vw;
-}
+  // min-width: 88vw;
+  // margin-left: 125px;
+//   @media(max-width: 1150px) {
+//     min-width: 60vw;
+// }
 }
