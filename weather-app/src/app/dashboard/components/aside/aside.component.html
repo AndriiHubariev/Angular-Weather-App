@@ -5,9 +5,8 @@
   class="sidebar"
 >
   <div class="sidebar_full">
-    <i (click)="sidebarToogle()" class="fas fa-exchange-alt"></i>
+    <i style="cursor: pointer; font-size: 20px;" (click)="sidebarToogle()" class="fas fa-exchange-alt"></i>
     <div
-      [class.minIco]="sidebarToggleState"
       class="sidebar_icons_wrapper"
       [ngSwitch]="weatherData.weather[0].main || 'Clear'"
     >
@@ -22,29 +21,29 @@
     <i style="color: rgb(241, 247, 164);" *ngSwitchCase="'Thunderstorm'" class="fas fa-bolt"></i>
     </div>
     <div class="sidebar_temp_date">
-      <div [class.minTemp]="sidebarToggleState" class="temp">
+      <div class="temp">
         {{ weatherData.temp | number: '1.0-0' }}&#176;
         <small title="{{ weatherData.weather[0].description }}"
           >{{ weatherData.weather[0].description }}
         </small>
       </div>
-      <div [class.minDate]="sidebarToggleState" class="date">
-        {{ weatherData.dt | date: "E HH:mm" }}
+      <div class="date">
+        {{ weatherData.dt | date: 'E HH:mm':'UTC' }}
       </div>
     </div>
     <div class="addition_content">
-      <div [class.minAddition]="sidebarToggleState" class="addition wind">
+      <div class="addition wind">
         <i class="fas fa-wind"></i>
         <span>{{ weatherData.wind_speed }} m/s</span>
       </div>
       <small>Sunrise & Sunset</small>
-      <div [class.minAddition]="sidebarToggleState" class="addition sunrise">
+      <div class="addition sunrise">
         <i class="fas fa-arrow-circle-up"></i>
-        <span>{{ weatherData.sunrise | date: "hh:mm a" }}</span>
+        <span>{{ weatherData.sunrise | date: 'hh:mm a':'UTC' }}</span>
       </div>
-      <div [class.minAddition]="sidebarToggleState" class="addition sunset">
+      <div class="addition sunset">
         <i class="fas fa-arrow-circle-down"></i>
-        <span>{{ weatherData.sunset | date: "hh:mm a" }}</span>
+        <span>{{ weatherData.sunset | date: 'hh:mm a':'UTC' }}</span>
       </div>
     </div>
   </div>

@@ -31,4 +31,5 @@ export interface DailyWeatherInterface {
     eve: number;
     morn: number;
   };
+  details: boolean
 }

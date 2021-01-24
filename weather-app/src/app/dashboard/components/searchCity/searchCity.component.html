@@ -1,5 +1,4 @@
 <div class="searchContainer">
-  <i (click)="closeSearch()" class="far fa-window-close"></i>
   <form class="form">
     <mat-form-field color="accent">
       <input
@@ -25,5 +24,10 @@
       (click)="submitCity()"
       >submit
     </button>
+    <button
+    mat-button color="danger"
+    (click)="closeSearch()"
+    >cancel
+  </button>
   </form>
 </div>

@@ -1,20 +1,53 @@
 <div class="wrapper">
-    <div [@daysAnim] *ngFor="let d of daysData$ | async" class="oneDay">
-        <div class="weekDay">{{d.dt |date: 'E'}}</div>
-        <div [ngSwitch]="d.weather[0].main" class="icon">
-          <i *ngSwitchCase="'Fog'" class="fas fa-smog"></i>
-          <i *ngSwitchCase="'Haze'" class="fas fa-smog"></i>
-          <i *ngSwitchCase="'Clouds'" class="fas fa-cloud"></i>
-          <i *ngSwitchCase="'Snow'" class="fas fa-snowflake"></i>
-          <i *ngSwitchCase="'Drizzle'" class="fas fa-cloud-rain"></i>
-          <i style="color: rgb(173, 172, 170);" *ngSwitchCase="'Mist'" class="fas fa-smog"></i>
-          <i style="color: rgb(247, 194, 95);" *ngSwitchCase="'Clear'" class="fas fa-sun"></i>
-          <i style="color: rgb(161, 183, 241);" *ngSwitchCase="'Rain'" class="fas fa-umbrella"></i>
-          <i style="color: rgb(241, 247, 164);" *ngSwitchCase="'Thunderstorm'" class="fas fa-bolt"></i>
-        </div>
-        <div class="dayNight">
-            <span class="day"><i class="fas fa-sun"></i>{{d.temp.day |number: '1.0-0'}}&#176;</span>
-            <span class="night"><i class="ico far fa-moon"></i>{{d.temp.night |number: '1.0-0' }}&#176;</span>
-        </div>
-    </div>
+  <div
+    matTooltipPosition="above"
+    matTooltip="{{ d.dt | date: 'EEEE' }} details"
+    [@daysAnim]
+    *ngFor="let d of daysData$ | async"
+    class="oneDay"
+  >
+    <ng-container *ngIf="!d.details; else details">
+      <div class="weekDay">{{ d.dt | date: "E" }}</div>
+      <div [ngSwitch]="d.weather[0].main" class="icon">
+        <i *ngSwitchCase="'Fog'" class="fas fa-smog"></i>
+        <i *ngSwitchCase="'Haze'" class="fas fa-smog"></i>
+        <i *ngSwitchCase="'Clouds'" class="fas fa-cloud"></i>
+        <i *ngSwitchCase="'Snow'" class="fas fa-snowflake"></i>
+        <i *ngSwitchCase="'Drizzle'" class="fas fa-cloud-rain"></i>
+        <i
+          style="color: rgb(173, 172, 170)"
+          *ngSwitchCase="'Mist'"
+          class="fas fa-smog"
+        ></i>
+        <i
+          style="color: rgb(247, 194, 95)"
+          *ngSwitchCase="'Clear'"
+          class="fas fa-sun"
+        ></i>
+        <i
+          style="color: rgb(161, 183, 241)"
+          *ngSwitchCase="'Rain'"
+          class="fas fa-umbrella"
+        ></i>
+        <i
+          style="color: rgb(241, 247, 164)"
+          *ngSwitchCase="'Thunderstorm'"
+          class="fas fa-bolt"
+        ></i>
+      </div>
+      <div class="dayNight">
+        <span class="day"
+          ><i class="fas fa-sun"></i
+          >{{ d.temp.day | number: "1.0-0" }}&#176;</span
+        >
+        <span class="night"
+          ><i class="ico far fa-moon"></i
+          >{{ d.temp.night | number: "1.0-0" }}&#176;</span
+        >
+      </div>
+    </ng-container>
+    <ng-template #details>
+      <p>Detailes</p>
+    </ng-template>
+  </div>
 </div>
