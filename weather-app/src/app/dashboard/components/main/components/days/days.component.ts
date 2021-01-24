@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { daysAnim } from 'src/app/app-animations';
 import { Store } from '@ngrx/store';
 import { DailyWeatherInterface } from 'src/app/model/dailyWeater.interface';
-import { Observable } from 'rxjs';
 import { WeatherDataSelector } from 'src/app/dashboard/store/selectors';
-import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-days',
@@ -13,13 +12,27 @@ import { map } from 'rxjs/operators';
   animations: [daysAnim],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DaysComponent implements OnInit {
-  public daysData$: Observable<DailyWeatherInterface[]>;
+export class DaysComponent implements OnInit, OnDestroy {
+  private subs$: Subscription;
+  public daysData: DailyWeatherInterface[];
 
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.daysData$ = this.store.select(WeatherDataSelector).pipe(map(res => res.chartsData?.days));
+     this.subs$ = this.store.select(WeatherDataSelector).subscribe(res => {
+        this.daysData = res.chartsData?.days
+      });
+  }
+
+  toggleDetails(obj: DailyWeatherInterface): DailyWeatherInterface[] {
+    obj = {...obj, details: !obj.details}
+    return this.daysData = this.daysData.map(d => d.dt === obj.dt ? obj : d)
+  }
+
+  ngOnDestroy(): void {
+    if (this.subs$) {
+      this.subs$.unsubscribe()
+    }
   }
 
 }

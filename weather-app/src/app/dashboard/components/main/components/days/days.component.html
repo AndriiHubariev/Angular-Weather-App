@@ -1,9 +1,8 @@
 <div class="wrapper">
   <div
-    matTooltipPosition="above"
-    matTooltip="{{ d.dt | date: 'EEEE' }} details"
     [@daysAnim]
-    *ngFor="let d of daysData$ | async"
+    (click)="toggleDetails(d)"
+    *ngFor="let d of daysData"
     class="oneDay"
   >
     <ng-container *ngIf="!d.details; else details">
@@ -47,7 +46,28 @@
       </div>
     </ng-container>
     <ng-template #details>
-      <p>Detailes</p>
+      <div class="details_wrapper">
+        <span
+          >{{ d.dt | date }}
+          <div>
+            <small>{{ d.weather[0].description }}</small>
+          </div></span
+        >
+        <div class="info">
+          <div class="left">
+            <small>Feels like:</small>
+            <small>Clouds:</small>
+            <small>Wind speed:</small>
+            <small>Humidity:</small>
+          </div>
+          <div class="right">
+            <span>{{ d.feels_like.day | number: "1.0-0" }}&#176;</span>
+            <span>{{ d.clouds }}&#37;</span>
+            <span>{{ d.wind_speed | number: "1.0-0" }}<small>m/s</small></span>
+            <span>{{ d.humidity }}&#37;</span>
+          </div>
+        </div>
+      </div>
     </ng-template>
   </div>
 </div>

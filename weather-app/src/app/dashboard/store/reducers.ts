@@ -26,6 +26,7 @@ const dashboardReducer = createReducer(
             return {
               ...day,
               dt: +day.dt * 1000,
+              details: false
             };
           }),
           dates: action.data.daily.map(day => {

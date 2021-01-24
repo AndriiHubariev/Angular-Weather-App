@@ -20,6 +20,7 @@
         flex-direction: column;
         justify-content: space-between;
         transition: border .2s;
+        overflow: hidden;
         .icon {
             font-size: 50px;
         }
@@ -38,4 +39,24 @@
             color: rgb(73, 73, 248);
         }
     }
+    .details_wrapper {
+      display: flex;
+      flex-direction: column;
+      .info {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        .left, .right {
+          small {
+            align-self: start;
+          }
+          span {
+            align-self: flex-end;
+          }
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
 }
+
