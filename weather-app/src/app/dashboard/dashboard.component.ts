@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.isSearchingCity = data.state;
     this.cityName = data.cityName;
     if (this.isSearchingCity) {
-      document.documentElement.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';

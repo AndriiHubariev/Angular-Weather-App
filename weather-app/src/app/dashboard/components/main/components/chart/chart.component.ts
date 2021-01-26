@@ -23,19 +23,17 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   public chart: Chart = [];
 
-  setDataSets(labelChart: string) {
-    switch (labelChart) {
-      case labelChart === 'Wind' ? 'Wind' : 'Pressure':
-        return {
-          backgroundColor: 'rgb(68, 184, 172, .8)',
-          borderColor: ['rgb(68, 184, 172, .8)'],
-          borderWidth: 3,
-          fill: false,
-        };
-      case 'Uvi' || 'Humidity':
-        return {
-          fill: false,
-        };
+  constructor() {}
+  ngOnInit() {}
+
+  ngAfterViewInit(): void {
+    if (this.labelChart) {
+      if (this.chart.canvas) {
+        this.chart.destroy();
+      }
+      this.minTemp || this.maxTemp
+        ? this.createTempChart()
+        : this.createBasicChart();
     }
   }
 
@@ -133,17 +131,19 @@ export class ChartComponent implements OnInit, AfterViewInit {
     }
   }
 
-  constructor() {}
-  ngOnInit() {}
-
-  ngAfterViewInit(): void {
-    if (this.labelChart) {
-      if (this.chart.canvas) {
-        this.chart.destroy();
-      }
-      this.minTemp || this.maxTemp
-        ? this.createTempChart()
-        : this.createBasicChart();
+  setDataSets(labelChart: string) {
+    switch (labelChart) {
+      case labelChart === 'Wind' ? 'Wind' : 'Pressure':
+        return {
+          backgroundColor: 'rgb(68, 184, 172, .8)',
+          borderColor: ['rgb(68, 184, 172, .8)'],
+          borderWidth: 3,
+          fill: false,
+        };
+      case 'Uvi' || 'Humidity':
+        return {
+          fill: false,
+        };
     }
   }
 

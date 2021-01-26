@@ -1,38 +1,44 @@
-@import '../variables.scss';
+@import "../variables.scss";
 .main_container {
-    position: relative;
-    display: flex;
-    min-height: 100vh;
-    width: 100vw;
-    border-top: 2px solid $main-border-color;
-    background: $main-background-color;
-    padding: 90px 20px 10px 20px;
-    overflow: hidden;
-    transition: all .5s;
-    i:hover {
-        transform: scale(1.15);
-        cursor: pointer;
-    }
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  border-top: 2px solid $main-border-color;
+  background: $main-background-color;
+  padding: 90px 20px 10px 20px;
+  overflow: hidden;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  i:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+  }
 }
 .spinner {
-    position: absolute;
-    left: 45%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  left: 45%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .hideSide {
-    @media(max-width: 500px) {
-        opacity: .2;
-    }
+  @media (max-width: 500px) {
+    opacity: 0.2;
+  }
 }
 .hideMine {
-    @media(max-width: 500px) {
-        opacity: .1;
-    }
+  @media (max-width: 500px) {
+    opacity: 0.1;
+  }
 }
 app-aside {
+  -moz-width: 280px;
+  -webkit-width: 280px;
   width: 280px;
-  transition: all .5s linear ;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
   z-index: 2;
 }
 app-main {
@@ -43,8 +49,10 @@ app-main {
 }
 
 .isSearchingCity {
+  -moz-margin-top: 250px;
+  -webkit-margin-top: 250px;
   margin-top: 250px;
-  transform:
-  perspective(75em)
-  rotateX(18deg);
+  -moz-transform: perspective(75em) rotateX(18deg);
+  -webkit-transform: perspective(75em) rotateX(18deg);
+  transform: perspective(75em) rotateX(18deg);
 }
